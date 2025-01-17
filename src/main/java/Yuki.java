@@ -41,12 +41,25 @@ public class Yuki {
                             "____________________________________________________________\n");
                 }
                 default -> {
-                    String addString = scanner.nextLine();
-                    currentString = currentString + addString;
+                    switch (currentString) {
+                        case "todo" -> {
+                            String taskName = scanner.nextLine();
+                            taskList[++taskCount] = new Todo(taskName);
+                        }
+                        case "deadline" -> {
+                            String[] array = scanner.nextLine().split("/by");
+                            taskList[++taskCount] = new Deadline(array[0], array[1]);
+                        }
+                        case "event" -> {
+                            String[] array = scanner.nextLine().replace("/to", "/from").split("/from");
+                            taskList[++taskCount] = new Event(array[0], array[1], array[2]);
+                        }
+                    }
                     System.out.println("____________________________________________________________\n" +
-                            " added: " + currentString + "\n" +
+                            " Got it. I've added this task:\n" +
+                            "   " + taskList[taskCount].toString() + "\n" +
+                            " Now you have " + taskCount + " tasks in the list.\n" +
                             "____________________________________________________________\n");
-                    taskList[++taskCount] = new Task(currentString);
                 }
             }
             currentString = scanner.next();
