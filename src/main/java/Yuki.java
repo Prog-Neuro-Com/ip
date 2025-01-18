@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Yuki {
@@ -11,7 +12,7 @@ public class Yuki {
         String currentString = " ";
         Scanner scanner = new Scanner(System.in);
         currentString = scanner.next();
-        Task[] taskList = new Task[105];
+        ArrayList<Task> taskList = new ArrayList<>();
         int taskCount = 0;
 
         while (!currentString.equals(endString)) {
@@ -19,8 +20,8 @@ public class Yuki {
                 case "list" -> {
                     System.out.println("____________________________________________________________\n"
                             + " Here are the tasks in your list:\n");
-                    for (int i = 1; i <= taskCount; i++) {
-                        System.out.println(i + ". " + taskList[i].toString());
+                    for (int i = 0; i < taskCount; i++) {
+                        System.out.println((i + 1) + ". " + taskList.get(i).toString());
                     }
                     System.out.println("____________________________________________________________\n");
                 }
@@ -34,8 +35,8 @@ public class Yuki {
                         }
                         System.out.println("____________________________________________________________\n"
                                 + " Nice! I've marked this task as done:\n");
-                        taskList[taskNumber].markAsDone();
-                        System.out.println(" " + taskList[taskNumber].toString() + "\n" +
+                        taskList.get(taskNumber).markAsDone();
+                        System.out.println(" " + taskList.get(taskNumber).toString() + "\n" +
                                 "____________________________________________________________\n");
                     } catch (Exception e) {
                         System.out.println("____________________________________________________________\n" +
@@ -55,8 +56,8 @@ public class Yuki {
                         }
                         System.out.println("____________________________________________________________\n"
                                 + " OK, I've marked this task as not done yet:\n");
-                        taskList[taskNumber].markAsNotDone();
-                        System.out.println(taskList[taskNumber].toString() + "\n" +
+                        taskList.get(taskNumber).markAsNotDone();
+                        System.out.println(taskList.get(taskNumber).toString() + "\n" +
                                 "____________________________________________________________\n");
                     } catch (Exception e) {
                         System.out.println("____________________________________________________________\n" +
@@ -64,6 +65,28 @@ public class Yuki {
                                 "____________________________________________________________\n");
                         scanner.next();
 
+                    }
+                }
+                case "delete" -> {
+                    try {
+                        int taskNumber = scanner.nextInt();
+                        if (taskNumber > taskCount) {
+                            throw new YukiException("____________________________________________________________\n" +
+                                    " Please enter a valid task number\n" +
+                                    "____________________________________________________________\n");
+                        }
+                        System.out.println("____________________________________________________________\n"
+                                + " Noted. I've removed this task:\n");
+                        System.out.println("   " + taskList.get(taskNumber).toString() + "\n");
+                        taskList.remove(taskNumber);
+                        taskCount--;
+                        System.out.println(" Now you have " + taskCount + " tasks in the list.\n" +
+                                "____________________________________________________________\n");
+                    } catch (Exception e) {
+                        System.out.println("____________________________________________________________\n" +
+                                " Please enter a valid task number\n" +
+                                "____________________________________________________________\n");
+                        scanner.next();
                     }
                 }
                 default -> {
@@ -81,10 +104,10 @@ public class Yuki {
                                 System.out.println(e.getMessage());
                                 break;
                             }
-                            taskList[++taskCount] = new Todo(taskName);
+                            taskList.add(new Todo(taskName));
                             System.out.println("____________________________________________________________\n" +
                                     " Got it. I've added this task:\n" +
-                                    "   " + taskList[taskCount].toString() + "\n" +
+                                    "   " + taskList.get(taskCount++).toString() + "\n" +
                                     " Now you have " + taskCount + " tasks in the list.\n" +
                                     "____________________________________________________________\n");
                         }
@@ -101,10 +124,10 @@ public class Yuki {
                                 System.out.println(e.getMessage());
                                 break;
                             }
-                            taskList[++taskCount] = new Deadline(array[0], array[1]);
+                            taskList.add(new Deadline(array[0], array[1]));
                             System.out.println("____________________________________________________________\n" +
                                     " Got it. I've added this task:\n" +
-                                    "   " + taskList[taskCount].toString() + "\n" +
+                                    "   " + taskList.get(taskCount++).toString() + "\n" +
                                     " Now you have " + taskCount + " tasks in the list.\n" +
                                     "____________________________________________________________\n");
                         }
@@ -121,10 +144,10 @@ public class Yuki {
                                 System.out.println(e.getMessage());
                                 break;
                             }
-                            taskList[++taskCount] = new Event(array[0], array[1], array[2]);
+                            taskList.add(new Event(array[0], array[1], array[2]));
                             System.out.println("____________________________________________________________\n" +
                                     " Got it. I've added this task:\n" +
-                                    "   " + taskList[taskCount].toString() + "\n" +
+                                    "   " + taskList.get(taskCount++).toString() + "\n" +
                                     " Now you have " + taskCount + " tasks in the list.\n" +
                                     "____________________________________________________________\n");
                         }
