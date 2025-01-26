@@ -15,6 +15,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String toFileString() {
+        return (isDone ? "1" : "0") + " | " + taskName;
+    }
+
     @Override
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "] " + taskName;
