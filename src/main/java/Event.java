@@ -1,11 +1,16 @@
 public class Event extends Task{
-    private String from;
-    private String to;
+    private final String from;
+    private final String to;
 
     public Event(String taskName, String from, String to) {
         super(taskName);
         this.from = from;
         this.to = to;
+    }
+
+    @Override
+    public String toFileString() {
+        return "E | " + super.toFileString() + " | " + from + " | " + to;
     }
 
     @Override
