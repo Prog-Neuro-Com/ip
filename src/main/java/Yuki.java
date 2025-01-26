@@ -1,8 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Yuki {
     private static final String BORDER = "____________________________________________________________";
@@ -173,7 +177,9 @@ public class Yuki {
         if (parts.length < 2) {
             throw new YukiException(BORDER + "\n The description of a deadline must include a deadline.\n Example: deadline return book /by Sunday\n" + BORDER);
         }
+
         taskList.add(new Deadline(parts[0].trim(), parts[1].trim()));
+
         printTaskAddedMessage(taskList.get(taskList.size() - 1), taskList.size());
     }
 
