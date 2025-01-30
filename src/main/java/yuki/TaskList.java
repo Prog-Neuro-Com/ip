@@ -1,3 +1,7 @@
+package yuki;
+
+import yuki.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList <T> {

@@ -1,3 +1,11 @@
+package yuki.command;
+
+import yuki.Storage;
+import yuki.TaskList;
+import yuki.Ui;
+import yuki.YukiException;
+import yuki.task.Task;
+
 public class BasicCommand extends Command{
     public BasicCommand(String[] command, String description, boolean isExit) {
         super(command, description, isExit);
