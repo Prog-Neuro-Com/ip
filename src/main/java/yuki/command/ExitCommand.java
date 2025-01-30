@@ -6,6 +6,9 @@ import yuki.Ui;
 import yuki.YukiException;
 import yuki.task.Task;
 
+/**
+ * Represents a command to handle invalid commands.
+ */
 public class ExitCommand extends Command{
 
     public ExitCommand(String[] command, String description, boolean isExit) {

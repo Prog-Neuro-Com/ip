@@ -6,6 +6,9 @@ import yuki.Ui;
 import yuki.YukiException;
 import yuki.task.Task;
 
+/**
+ * Represents a command to add a task to the task list.
+ */
 public class BasicCommand extends Command{
     public BasicCommand(String[] command, String description, boolean isExit) {
         super(command, description, isExit);
@@ -16,6 +19,11 @@ public class BasicCommand extends Command{
         return false;
     }
 
+    /**
+     * Executes the command to list, mark, unmark or delete a task.
+     * @param tasks TaskList containing the tasks.
+     * @throws YukiException if the task number does not exist or is not a number.
+     */
     @Override
     public void execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
         switch (this.getCommand(0)) {

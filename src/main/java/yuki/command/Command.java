@@ -6,6 +6,9 @@ import yuki.Ui;
 import yuki.YukiException;
 import yuki.task.Task;
 
+/**
+ * Represents a command to add a task to the task list.
+ */
 public abstract class Command {
     final String[] command;
     private final String description;

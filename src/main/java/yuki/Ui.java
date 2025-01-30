@@ -1,5 +1,8 @@
 package yuki;
 
+/**
+ * Ui class deals with interactions with the user.
+ */
 public class Ui {
     private static final String BORDER = "____________________________________________________________";
 
@@ -33,6 +36,11 @@ public class Ui {
         System.out.println("Error loading file. Starting with an empty task list.");
     }
 
+    /**
+     * Prints the message to the console.
+     *
+     * @param message The message to be printed.
+     */
     public void print(String message) {
         System.out.println(message);
     }

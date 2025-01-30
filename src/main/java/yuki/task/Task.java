@@ -1,5 +1,8 @@
 package yuki.task;
 
+/**
+ * Represents a task in the task list.
+ */
 public class Task {
     private final String taskName;
     private boolean isDone;

@@ -12,6 +12,9 @@ import yuki.task.Todo;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a command to add a task to the task list.
+ */
 public class AddCommand extends Command{
     public AddCommand(String[] command, String description, boolean isExit) {
         super(command, description, isExit);
