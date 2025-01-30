@@ -1,7 +1,16 @@
+package yuki;
+
+import yuki.task.Task;
+import yuki.task.Deadline;
+import yuki.task.Event;
+import yuki.task.Todo;
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
+
 
 public class Storage {
     private final String filePath;

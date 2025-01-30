@@ -1,3 +1,11 @@
+package yuki.command;
+
+import yuki.Storage;
+import yuki.TaskList;
+import yuki.Ui;
+import yuki.YukiException;
+import yuki.task.Task;
+
 public abstract class Command {
     final String[] command;
     private final String description;

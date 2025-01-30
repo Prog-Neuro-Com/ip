@@ -1,3 +1,5 @@
+package yuki;
+
 public class Ui {
     private static final String BORDER = "____________________________________________________________";
 

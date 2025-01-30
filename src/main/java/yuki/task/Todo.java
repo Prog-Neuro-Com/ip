@@ -1,3 +1,5 @@
+package yuki.task;
+
 public class Todo extends Task {
     public Todo(String isDone, String taskName) {
         super(taskName, isDone.equals("1"));
