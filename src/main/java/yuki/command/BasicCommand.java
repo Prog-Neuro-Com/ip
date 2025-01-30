@@ -79,6 +79,21 @@ public class BasicCommand extends Command{
                     System.out.println("Please enter a valid task number");
                 }
             }
+            case "find" -> {
+                try {
+                    String keyword = getCommand(1);
+                    ui.showLine();
+                    ui.print("Here are the matching tasks in your list:");
+                    for (int i = 0; i < tasks.size(); i++) {
+                        if (tasks.getDescription(i).contains(keyword)) {
+                            System.out.println((i + 1) + ". " + tasks.getDescription(i));
+                        }
+                    }
+                    ui.showLine();
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Please enter a keyword to search for");
+                }
+            }
         }
 
     }
