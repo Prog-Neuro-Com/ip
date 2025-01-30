@@ -6,10 +6,17 @@ import yuki.command.Command;
 import yuki.command.ErrorCommand;
 import yuki.command.ExitCommand;
 
+/**
+ * Represents a parser that parses the user input.
+ */
 public class Parser {
-    public Parser() {
-    }
 
+    /**
+     * Parses the user input and returns the corresponding command.
+     *
+     * @param input The user input.
+     * @return The corresponding command.
+     */
     public static Command parse(String input) {
         String[] command = input.split(" ");
         return switch (command[0]) {

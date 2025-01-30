@@ -11,7 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-
+/**
+ * Represents a storage object that handles saving and loading tasks to and from a file.
+ */
 public class Storage {
     private final String filePath;
     private final TaskList<Task> storageTasks = new TaskList<>();
@@ -19,6 +21,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the tasks to a file.
+     *
+     * @param tasks The list of tasks to be saved.
+     */
     public void save(TaskList<Task> tasks) {
         try {
             FileWriter writer = new FileWriter(filePath);
@@ -31,6 +38,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the tasks from a file.
+     *
+     * @return The list of tasks loaded from the file.
+     * @throws YukiException If the file is not found or if the task type is invalid.
+     */
     public TaskList<Task> load() throws YukiException {
         File file = new File(filePath);
         try {
