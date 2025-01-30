@@ -2,9 +2,9 @@ public class Task {
     private final String taskName;
     private boolean isDone;
 
-    public Task(String taskName) {
+    public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public void markAsDone() {
