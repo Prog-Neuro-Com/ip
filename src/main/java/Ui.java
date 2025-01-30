@@ -24,7 +24,7 @@ public class Ui {
     }
 
     public String readCommand() {
-        return System.console().readLine();
+        return new java.util.Scanner(System.in).nextLine();
     }
 
     public void showLoadingError() {

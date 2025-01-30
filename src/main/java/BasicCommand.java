@@ -22,10 +22,10 @@ public class BasicCommand extends Command{
             case "mark" -> {
                 try {
                     int taskNumber = Integer.parseInt(getCommand(1));
-                    tasks.get(taskNumber).markAsDone();
+                    tasks.get(taskNumber - 1).markAsDone();
                     ui.showLine();
                     ui.print("Nice! I've marked this task as done:");
-                    ui.print(tasks.getDescription(taskNumber));
+                    ui.print(tasks.getDescription(taskNumber - 1));
                     ui.showLine();
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Task number does not exist");
@@ -37,10 +37,10 @@ public class BasicCommand extends Command{
             case "unmark" -> {
                 try {
                     int taskNumber = Integer.parseInt(getCommand(1));
-                    tasks.get(taskNumber).markAsNotDone();
+                    tasks.get(taskNumber - 1).markAsNotDone();
                     ui.showLine();
                     ui.print("Nice! I've marked this task as not done:");
-                    ui.print(tasks.getDescription(taskNumber));
+                    ui.print(tasks.getDescription(taskNumber - 1));
                     ui.showLine();
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Task number does not exist");
@@ -52,9 +52,9 @@ public class BasicCommand extends Command{
                 try {
                     int taskNumber = Integer.parseInt(getCommand(1));
                     ui.showLine();
+                    ui.print(tasks.getDescription(taskNumber - 1));
+                    tasks.remove(taskNumber - 1);
                     ui.print("Noted. I've removed this task:");
-                    ui.print(tasks.getDescription(taskNumber));
-                    tasks.remove(taskNumber);
                     ui.print("Now you have " + tasks.size() + " tasks in the list.");
                     ui.showLine();
                 } catch (IndexOutOfBoundsException e) {
