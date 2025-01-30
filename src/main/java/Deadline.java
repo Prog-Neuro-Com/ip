@@ -4,8 +4,8 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task{
     private final LocalDate deadline;
 
-    public Deadline(String taskName, String deadline) throws YukiException {
-        super(taskName);
+    public Deadline(String isDone, String taskName, String deadline) throws YukiException {
+        super(taskName, isDone.equals("1"));
         try {
             this.deadline = LocalDate.parse(deadline);
         } catch (Exception e) {
