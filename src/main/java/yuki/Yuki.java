@@ -5,6 +5,8 @@ import yuki.task.Task;
 import yuki.TaskList;
 import yuki.YukiException;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Yuki is a chatbot that helps users to manage their tasks.
  * It can add, delete, mark as done, find tasks and list all tasks.
@@ -32,24 +34,26 @@ public class Yuki {
 
     }
 
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (YukiException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-        storage.save(tasks);
-        ui.showGoodbye();
-    }
 
     public static void main(String[] args) {
-        new Yuki("src/main/java/data/Yuki.txt").run();
+        new Yuki("src/main/java/data/Yuki.txt");
+    }
+
+    public String getResponse(String input) throws InterruptedException {
+        boolean isExit = false;
+        String output;
+        try {
+            Command c = Parser.parse(input);
+            output = c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+        } catch (YukiException e) {
+            return e.getMessage();
+        }
+
+        if (isExit) {
+            storage.save(tasks);
+            return ui.showGoodbye();
+        }
+        return output;
     }
 }

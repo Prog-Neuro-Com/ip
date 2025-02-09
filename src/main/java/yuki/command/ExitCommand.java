@@ -16,8 +16,8 @@ public class ExitCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
-
+    public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+        return "Bye. Hope to see you again soon!";
     }
 
     @Override

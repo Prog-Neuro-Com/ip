@@ -15,8 +15,8 @@ public class ErrorCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
-        ui.showError(this.getDescription());
+    public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+        return this.getDescription();
     }
 
     @Override

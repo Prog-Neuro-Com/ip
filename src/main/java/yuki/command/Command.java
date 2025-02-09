@@ -28,5 +28,5 @@ public abstract class Command {
 
     public abstract boolean isExit();
 
-    public abstract void execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException;
+    public abstract String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException;
 }

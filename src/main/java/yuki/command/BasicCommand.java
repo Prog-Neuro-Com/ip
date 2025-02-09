@@ -25,28 +25,28 @@ public class BasicCommand extends Command{
      * @throws YukiException if the task number does not exist or is not a number.
      */
     @Override
-    public void execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+    public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+        StringBuilder output = new StringBuilder();
         switch (this.getCommand(0)) {
             case "list" -> {
-                ui.showLine();
-                ui.print("Here are the tasks in your list:");
+                output.append("Here are the tasks in your list:\n");
                 for (int i = 0; i < tasks.size(); i++) {
                     System.out.println((i + 1) + ". " + tasks.getDescription(i));
+                    output.append((i + 1)).append(". ").append(tasks.getDescription(i)).append("\n");
                 }
-                ui.showLine();
+                return output.toString();
             }
             case "mark" -> {
                 try {
                     int taskNumber = Integer.parseInt(getCommand(1));
                     tasks.get(taskNumber - 1).markAsDone();
-                    ui.showLine();
-                    ui.print("Nice! I've marked this task as done:");
-                    ui.print(tasks.getDescription(taskNumber - 1));
-                    ui.showLine();
+                    output.append("Nice! I've marked this task as done:\n");
+                    output.append(tasks.getDescription(taskNumber - 1)).append("\n");
+                    return output.toString();
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Task number does not exist");
+                    return "Task number does not exist";
                 } catch (NumberFormatException e) {
-                    System.out.println("Please enter a valid task number");
+                    return "Please enter a valid task number";
                 }
 
             }
@@ -54,47 +54,45 @@ public class BasicCommand extends Command{
                 try {
                     int taskNumber = Integer.parseInt(getCommand(1));
                     tasks.get(taskNumber - 1).markAsNotDone();
-                    ui.showLine();
-                    ui.print("Nice! I've marked this task as not done:");
-                    ui.print(tasks.getDescription(taskNumber - 1));
-                    ui.showLine();
+                    output.append("Nice! I've marked this task as not done:\n");
+                    output.append(tasks.getDescription(taskNumber - 1)).append("\n");
+                    return output.toString();
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Task number does not exist");
+                    return "Task number does not exist";
                 } catch (NumberFormatException e) {
-                    System.out.println("Please enter a valid task number");
+                    return "Please enter a valid task number";
                 }
             }
             case "delete" -> {
                 try {
                     int taskNumber = Integer.parseInt(getCommand(1));
-                    ui.showLine();
-                    ui.print(tasks.getDescription(taskNumber - 1));
+                    output.append(tasks.getDescription(taskNumber - 1)).append("\n");
                     tasks.remove(taskNumber - 1);
-                    ui.print("Noted. I've removed this task:");
-                    ui.print("Now you have " + tasks.size() + " tasks in the list.");
-                    ui.showLine();
+                    output.append("Noted. I've removed this task:\n");
+                    output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+                    return output.toString();
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Task number does not exist");
+                    return "Task number does not exist";
                 } catch (NumberFormatException e) {
-                    System.out.println("Please enter a valid task number");
+                    return "Please enter a valid task number";
                 }
             }
             case "find" -> {
                 try {
                     String keyword = getCommand(1);
-                    ui.showLine();
-                    ui.print("Here are the matching tasks in your list:");
+                    output.append("Here are the matching tasks in your list:\n");
                     for (int i = 0; i < tasks.size(); i++) {
                         if (tasks.getDescription(i).contains(keyword)) {
+                            output.append((i + 1)).append(". ").append(tasks.getDescription(i)).append("\n");
                             System.out.println((i + 1) + ". " + tasks.getDescription(i));
                         }
                     }
-                    ui.showLine();
+                    return output.toString();
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Please enter a keyword to search for");
+                    return "Please enter a keyword to search for";
                 }
             }
         }
-
+        return "Invalid command";
     }
 }
