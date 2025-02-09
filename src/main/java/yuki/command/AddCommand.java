@@ -26,17 +26,20 @@ public class AddCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+    public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+        StringBuilder output = new StringBuilder();
         switch (this.getCommand(0)) {
             case "todo" -> {
                 String result = Arrays.stream(command, 1, command.length).collect(Collectors.joining(" "));
+                if (result.isEmpty()) {
+                    throw new YukiException("The description of a todo cannot be empty.");
+                }
                 Task newTodo = new Todo("0", result);
                 tasks.add(newTodo);
-                ui.showLine();
-                ui.print("Got it. I've added this task:");
-                ui.print(newTodo.toString());
-                ui.print("Now you have " + tasks.size() + " tasks in the list.");
-                ui.showLine();
+                output.append("Got it. I've added this task:\n");
+                output.append(newTodo).append("\n");
+                output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+                return output.toString();
             }
             case "deadline" -> {
                 String result = Arrays.stream(command, 1, command.length).collect(Collectors.joining(" "));
@@ -48,11 +51,10 @@ public class AddCommand extends Command{
                 }
                 Task newDeadline = new Deadline("0", c[0], c[1]);
                 tasks.add(newDeadline);
-                ui.showLine();
-                ui.print("Got it. I've added this task:");
-                ui.print(newDeadline.toString());
-                ui.print("Now you have " + tasks.size() + " tasks in the list.");
-                ui.showLine();
+                output.append("Got it. I've added this task:\n");
+                output.append(newDeadline).append("\n");
+                output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+                return output.toString();
             }
             case "event" -> {
                 String result = Arrays.stream(command, 1, command.length).collect(Collectors.joining(" "));
@@ -64,12 +66,12 @@ public class AddCommand extends Command{
                 }
                 Task newEvent = new Event("0", c[0], c[1], c[2]);
                 tasks.add(newEvent);
-                ui.showLine();
-                ui.print("Got it. I've added this task:");
-                ui.print(newEvent.toString());
-                ui.print("Now you have " + tasks.size() + " tasks in the list.");
-                ui.showLine();
+                output.append("Got it. I've added this task:\n");
+                output.append(newEvent).append("\n");
+                output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+                return output.toString();
             }
         }
+        return "";
     }
 }

@@ -20,16 +20,12 @@ public class Ui {
         System.out.println(BORDER + "\n");
     }
 
-    public void showGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showGoodbye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     public void showError(String message) {
         System.out.println(message);
-    }
-
-    public String readCommand() {
-        return new java.util.Scanner(System.in).nextLine();
     }
 
     public void showLoadingError() {
