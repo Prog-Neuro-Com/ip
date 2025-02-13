@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
  * Represents a command to add a task to the task list.
  */
 public class AddCommand extends Command{
-    public AddCommand(String[] command, String description, boolean isExit) {
-        super(command, description, isExit);
+    public AddCommand(String[] commands, String description, boolean isExit) {
+        super(commands, description, isExit);
     }
 
     @Override
@@ -30,7 +30,8 @@ public class AddCommand extends Command{
         StringBuilder output = new StringBuilder();
         switch (this.getCommand(0)) {
             case "todo" -> {
-                String result = Arrays.stream(command, 1, command.length).collect(Collectors.joining(" "));
+                String result = Arrays.stream(commands, 1, commands.length)
+                        .collect(Collectors.joining(" "));
                 if (result.isEmpty()) {
                     throw new YukiException("The description of a todo cannot be empty.");
                 }
@@ -42,12 +43,14 @@ public class AddCommand extends Command{
                 return output.toString();
             }
             case "deadline" -> {
-                String result = Arrays.stream(command, 1, command.length).collect(Collectors.joining(" "));
+                String result = Arrays.stream(commands, 1, commands.length)
+                        .collect(Collectors.joining(" "));
                 String[] c = result.split("/by");
                 c = Arrays.stream(c).map(String::trim).toArray(String[]::new);
                 if (c.length != 2) {
-                    throw new YukiException("Invalid format for deadline command. Please enter in the format: deadline "
-                                            + "<description> /by <date>");
+                    throw new YukiException(
+                            "Invalid format for deadline command. Please enter in the format: deadline "
+                                    + "<description> /by <date>");
                 }
                 Task newDeadline = new Deadline("0", c[0], c[1]);
                 tasks.add(newDeadline);
@@ -57,11 +60,13 @@ public class AddCommand extends Command{
                 return output.toString();
             }
             case "event" -> {
-                String result = Arrays.stream(command, 1, command.length).collect(Collectors.joining(" "));
+                String result = Arrays.stream(commands, 1, commands.length)
+                        .collect(Collectors.joining(" "));
                 String[] c = result.replace("/to", "/from ").split("/from");
                 c = Arrays.stream(c).map(String::trim).toArray(String[]::new);
                 if (c.length != 3) {
-                    throw new YukiException("Invalid format for event command. Please enter in the format: event <description> "
+                    throw new YukiException(
+                            "Invalid format for event command. Please enter in the format: event <description> "
                                             + "/from <start date> /to <end date>");
                 }
                 Task newEvent = new Event("0", c[0], c[1], c[2]);

@@ -11,8 +11,8 @@ import yuki.task.Task;
  */
 public class ExitCommand extends Command{
 
-    public ExitCommand(String[] command, String description, boolean isExit) {
-        super(command, description, isExit);
+    public ExitCommand(String[] commands, String description, boolean isExit) {
+        super(commands, description, isExit);
     }
 
     @Override

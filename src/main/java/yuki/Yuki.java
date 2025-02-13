@@ -2,10 +2,6 @@ package yuki;
 
 import yuki.command.Command;
 import yuki.task.Task;
-import yuki.TaskList;
-import yuki.YukiException;
-
-import static java.lang.Thread.sleep;
 
 /**
  * Yuki is a chatbot that helps users to manage their tasks.

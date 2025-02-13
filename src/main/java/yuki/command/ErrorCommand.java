@@ -10,8 +10,8 @@ import yuki.task.Task;
  * Represents a command to handle invalid commands.
  */
 public class ErrorCommand extends Command{
-    public ErrorCommand(String[] command, String description, boolean isExit) {
-        super(command, description, isExit);
+    public ErrorCommand(String[] commands, String description, boolean isExit) {
+        super(commands, description, isExit);
     }
 
     @Override
