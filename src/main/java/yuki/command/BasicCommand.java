@@ -10,8 +10,8 @@ import yuki.task.Task;
  * Represents a command to add a task to the task list.
  */
 public class BasicCommand extends Command{
-    public BasicCommand(String[] command, String description, boolean isExit) {
-        super(command, description, isExit);
+    public BasicCommand(String[] commands, String description, boolean isExit) {
+        super(commands, description, isExit);
     }
 
     @Override

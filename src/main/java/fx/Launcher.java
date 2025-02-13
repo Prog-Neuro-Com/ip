@@ -1,3 +1,5 @@
+package fx;
+
 import javafx.application.Application;
 
 /**

@@ -1,18 +1,19 @@
+package fx;
+
 import javafx.application.Platform;
+
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 import yuki.Yuki;
 
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.Objects;
-
-import static java.lang.Thread.sleep;
-
 /**
  * Controller for the main GUI.
  */
@@ -25,7 +26,6 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Yuki yuki;
 
     private final Image userImage = new Image(Objects.requireNonNull(
@@ -47,8 +47,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other
+     * containing Duke's reply and then appends them to the dialog
+     * container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() throws InterruptedException {

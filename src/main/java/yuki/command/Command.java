@@ -10,16 +10,16 @@ import yuki.task.Task;
  * Represents a command to add a task to the task list.
  */
 public abstract class Command {
-    final String[] command;
+    final String[] commands;
     private final String description;
 
-    public Command(String[] command, String description, boolean isExit) {
-        this.command = command;
+    public Command(String[] commands, String description, boolean isExit) {
+        this.commands = commands;
         this.description = description;
     }
 
     public String getCommand(int i){
-        return command[i];
+        return commands[i];
     }
 
     public String getDescription() {
