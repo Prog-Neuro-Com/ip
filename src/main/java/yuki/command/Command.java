@@ -13,12 +13,19 @@ public abstract class Command {
     final String[] commands;
     private final String description;
 
+    /**
+     * Creates a command object.
+     *
+     * @param commands The commands that can be used to execute the command.
+     * @param description The description of the command.
+     * @param isExit Whether the command is an exit command.
+     */
     public Command(String[] commands, String description, boolean isExit) {
         this.commands = commands;
         this.description = description;
     }
 
-    public String getCommand(int i){
+    public String getCommand(int i) {
         return commands[i];
     }
 

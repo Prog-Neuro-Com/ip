@@ -9,7 +9,7 @@ import yuki.task.Task;
 /**
  * Represents a command to handle invalid commands.
  */
-public class ErrorCommand extends Command{
+public class ErrorCommand extends Command {
     public ErrorCommand(String[] commands, String description, boolean isExit) {
         super(commands, description, isExit);
     }

@@ -1,16 +1,24 @@
 package yuki.task;
 
-import yuki.YukiException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import yuki.YukiException;
+
+
 
 /**
  * Represents a deadline task.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private final LocalDate deadline;
 
+    /**
+     * Creates a deadline task.
+     *
+     * @param taskName The name of the task.
+     * @param deadline The deadline of the task.
+     */
     public Deadline(String isDone, String taskName, String deadline) throws YukiException {
         super(taskName, isDone.equals("1"));
         try {
