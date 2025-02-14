@@ -1,15 +1,15 @@
 package yuki;
 
-import yuki.task.Task;
-
 import java.util.ArrayList;
+
+import yuki.task.Task;
 
 /**
  * TaskList class to store tasks.
  * @param <T> Task type
  */
 public class TaskList <T> {
-    ArrayList<T> taskList;
+    private ArrayList<T> taskList;
     public TaskList() {
         taskList = new ArrayList<>();
     }

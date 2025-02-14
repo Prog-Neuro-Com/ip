@@ -1,15 +1,15 @@
 package yuki;
 
-import yuki.task.Task;
-import yuki.task.Deadline;
-import yuki.task.Event;
-import yuki.task.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
 import java.util.Scanner;
+
+import yuki.task.Deadline;
+import yuki.task.Task;
+import yuki.task.Event;
+import yuki.task.Todo;
 
 /**
  * Represents a storage object that handles saving and loading tasks to and from a file.
@@ -55,17 +55,17 @@ public class Storage {
                     parts[i] = parts[i].trim();
                 }
                 switch (parts[0]) {
-                    case "T":
-                        storageTasks.add(new Todo(parts[1], parts[2]));
-                        break;
-                    case "D":
-                        storageTasks.add(new Deadline(parts[1], parts[2], parts[3]));
-                        break;
-                    case "E":
-                        storageTasks.add(new Event(parts[1], parts[2], parts[3], parts[4]));
-                        break;
-                    default:
-                        throw new YukiException("Invalid task type");
+                case "T":
+                    storageTasks.add(new Todo(parts[1], parts[2]));
+                    break;
+                case "D":
+                    storageTasks.add(new Deadline(parts[1], parts[2], parts[3]));
+                    break;
+                case "E":
+                    storageTasks.add(new Event(parts[1], parts[2], parts[3], parts[4]));
+                    break;
+                default:
+                    throw new YukiException("Invalid task type");
                 }
             }
         } catch (FileNotFoundException e) {
