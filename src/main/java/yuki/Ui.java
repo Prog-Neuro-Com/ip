@@ -20,10 +20,16 @@ public class Ui {
         System.out.println(BORDER + "\n");
     }
 
+    /**
+     * Returns the goodbye message.
+     */
     public String showGoodbye() {
         return "Bye. Hope to see you again soon!";
     }
 
+    /**
+     * Prints the error message to the console.
+     */
     public void showError(String message) {
         System.out.println(message);
     }

@@ -58,6 +58,9 @@ public class BasicCommand extends Command{
         }
     }
 
+    /**
+     * This command cannot be undone.
+     */
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
         return "This command cannot be undone";

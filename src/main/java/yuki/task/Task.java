@@ -18,8 +18,23 @@ public class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Returns the name of the task.
+     *
+     * @return The name of the task.
+     */
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    /**
+     * Returns the name of the task.
+     *
+     * @return The name of the task.
+     */
+
+    public boolean isDone() {
+        return isDone;
     }
 
     public void markAsNotDone() {

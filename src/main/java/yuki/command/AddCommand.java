@@ -26,6 +26,14 @@ public class AddCommand extends Command {
         return false;
     }
 
+    /**
+     * Executes the command to add a task to the task list.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @return
+     * @throws YukiException
+     */
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
 
@@ -86,6 +94,12 @@ public class AddCommand extends Command {
         return output.toString();
     }
 
+    /**
+     * Undoes the last add command.
+     * @param tasks
+     * @return
+     * @throws YukiException
+     */
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
         tasks.remove(tasks.size() - 1);

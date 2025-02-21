@@ -6,6 +6,9 @@ import yuki.Ui;
 import yuki.YukiException;
 import yuki.task.Task;
 
+/**
+ * Represents a command to delete a task from the task list.
+ */
 public class DeleteCommand extends Command {
     Task deletedTask = null;
 
@@ -18,6 +21,14 @@ public class DeleteCommand extends Command {
         return false;
     }
 
+    /**
+     * Executes the command to delete a task from the task list.
+     * @param tasks TaskList containing the tasks.
+     * @param ui Ui object to interact with the user.
+     * @param storage Storage object to save the tasks.
+     * @return The output of the command.
+     * @throws YukiException if the task number does not exist or is not a number.
+     */
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
         return handleDeleteCommand(tasks);
@@ -46,6 +57,12 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Undoes the deletion of the task.
+     * @param tasks TaskList containing the tasks.
+     * @return The output of the undo command.
+     * @throws YukiException if no task has been deleted yet.
+     */
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
         if (deletedTask == null) {

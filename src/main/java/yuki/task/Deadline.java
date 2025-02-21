@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import yuki.YukiException;
 
-
-
 /**
  * Represents a deadline task.
  */
@@ -28,12 +26,22 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Creates a deadline task.
+     *
+     * @return The string representation of the task stored in file.
+     */
     @Override
     public String toFileString() {
         return "D | " + super.toFileString() + " | "
                 + deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    /**
+     * Returns the string representation of the deadline task.
+     *
+     * @return The string representation of the deadline task.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "

@@ -25,6 +25,10 @@ public class TaskList <T> {
         taskList.add(task);
     }
 
+    /**
+     * Returns the size of the task list.
+     * @return Size of the task list
+     */
     public int size() {
         return taskList.size();
     }

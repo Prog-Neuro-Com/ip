@@ -17,6 +17,14 @@ public class UnmarkCommand extends Command {
         return false;
     }
 
+    /**
+     * Executes the command to unmark a task from the task list.
+     * @param tasks TaskList containing the tasks.
+     * @param ui Ui object to interact with the user.
+     * @param storage Storage object to save the tasks.
+     * @return The output of the command.
+     * @throws YukiException if the task number does not exist or is not a number.
+     */
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
         return handleUnmarkCommand(tasks);
@@ -43,6 +51,11 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * Undo the command.
+     * @param tasks TaskList containing the tasks.
+     * @return The output of the command.
+     */
     @Override
     public String undo(TaskList<Task> tasks) {
         tasks.get(taskNumber).markAsDone();
