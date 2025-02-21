@@ -35,6 +35,13 @@ public class Yuki {
         new Yuki("src/main/java/data/Yuki.txt");
     }
 
+    /**
+     * Gets the response from Yuki based on the user input.
+     *
+     * @param input The user input.
+     * @return The response from Yuki.
+     * @throws InterruptedException If the thread is interrupted.
+     */
     public String getResponse(String input) throws InterruptedException {
         boolean isExit = false;
         String output;
