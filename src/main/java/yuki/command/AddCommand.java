@@ -28,56 +28,67 @@ public class AddCommand extends Command {
 
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
-        StringBuilder output = new StringBuilder();
-        switch (this.getCommand(0)) {
-            case "todo" -> {
-                String result = Arrays.stream(commands, 1, commands.length)
-                        .collect(Collectors.joining(" "));
-                if (result.isEmpty()) {
-                    throw new YukiException("The description of a todo cannot be empty.");
-                }
-                Task newTodo = new Todo("0", result);
-                tasks.add(newTodo);
-                output.append("Got it. I've added this task:\n");
-                output.append(newTodo).append("\n");
-                output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
-                return output.toString();
-            }
-            case "deadline" -> {
-                String result = Arrays.stream(commands, 1, commands.length)
-                        .collect(Collectors.joining(" "));
-                String[] c = result.split("/by");
-                c = Arrays.stream(c).map(String::trim).toArray(String[]::new);
-                if (c.length != 2) {
-                    throw new YukiException(
-                            "Invalid format for deadline command. Please enter in the format: deadline "
-                                    + "<description> /by <date>");
-                }
-                Task newDeadline = new Deadline("0", c[0], c[1]);
-                tasks.add(newDeadline);
-                output.append("Got it. I've added this task:\n");
-                output.append(newDeadline).append("\n");
-                output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
-                return output.toString();
-            }
-            case "event" -> {
-                String result = Arrays.stream(commands, 1, commands.length)
-                        .collect(Collectors.joining(" "));
-                String[] c = result.replace("/to", "/from ").split("/from");
-                c = Arrays.stream(c).map(String::trim).toArray(String[]::new);
-                if (c.length != 3) {
-                    throw new YukiException(
-                            "Invalid format for event command. Please enter in the format: event <description> "
-                                            + "/from <start date> /to <end date>");
-                }
-                Task newEvent = new Event("0", c[0], c[1], c[2]);
-                tasks.add(newEvent);
-                output.append("Got it. I've added this task:\n");
-                output.append(newEvent).append("\n");
-                output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
-                return output.toString();
-            }
+
+        return switch (this.getCommand(0)) {
+            case "todo" -> handleTodoCommand(tasks);
+            case "deadline" -> handleDeadlineCommand(tasks);
+            case "event" -> handleEventCommand(tasks);
+            default -> "";
+        };
+    }
+
+    private String handleTodoCommand(TaskList<Task> tasks) throws YukiException {
+        String result = Arrays.stream(commands, 1, commands.length)
+                .collect(Collectors.joining(" "));
+        if (result.isEmpty()) {
+            throw new YukiException("The description of a todo cannot be empty.");
         }
-        return "";
+        Task newTodo = new Todo("0", result);
+        tasks.add(newTodo);
+        return constructOutput(newTodo, tasks);
+    }
+
+    private String handleDeadlineCommand(TaskList<Task> tasks) throws YukiException {
+        String result = Arrays.stream(commands, 1, commands.length)
+                .collect(Collectors.joining(" "));
+        String[] c = result.split("/by");
+        c = Arrays.stream(c).map(String::trim).toArray(String[]::new);
+        if (c.length != 2) {
+            throw new YukiException(
+                    "Invalid format for deadline command. Please enter in the format: deadline <description> /by <date>");
+        }
+        Task newDeadline = new Deadline("0", c[0], c[1]);
+        tasks.add(newDeadline);
+        return constructOutput(newDeadline, tasks);
+    }
+
+    private String handleEventCommand(TaskList<Task> tasks) throws YukiException {
+        String result = Arrays.stream(commands, 1, commands.length)
+                .collect(Collectors.joining(" "));
+        String[] c = result.replace("/to", "/from ").split("/from");
+        c = Arrays.stream(c).map(String::trim).toArray(String[]::new);
+        if (c.length != 3) {
+            throw new YukiException(
+                    "Invalid format for event command. Please enter in the format: event <description> "
+                            + "/from <start date> /to <end date>");
+        }
+        Task newEvent = new Event("0", c[0], c[1], c[2]);
+        tasks.add(newEvent);
+        return constructOutput(newEvent, tasks);
+    }
+
+    private String constructOutput(Task task, TaskList<Task> tasks) {
+        StringBuilder output = new StringBuilder();
+        output.append("Got it. I've added this task:\n");
+        output.append(task).append("\n");
+        output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+        Command.lastCommand = this;
+        return output.toString();
+    }
+
+    @Override
+    public String undo(TaskList<Task> tasks) throws YukiException {
+        tasks.remove(tasks.size() - 1);
+        return "Last task removed.";
     }
 }

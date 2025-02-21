@@ -9,25 +9,23 @@ import yuki.task.Task;
 /**
  * Represents a command to handle invalid commands.
  */
-public class ExitCommand extends Command {
-
-    public ExitCommand(String[] commands, String description, boolean isExit) {
+public class UndoCommand extends Command {
+    public UndoCommand(String[] commands, String description, boolean isExit) {
         super(commands, description, isExit);
     }
 
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
-        Command.lastCommand = this;
-        return "Bye. Hope to see you again soon!";
+        return Command.lastCommand == null ? "No command to undo." : Command.lastCommand.undo(tasks);
     }
 
     @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
-        return "";
+        return "Can only undo the last command.";
     }
 }

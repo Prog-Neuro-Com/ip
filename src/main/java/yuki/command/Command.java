@@ -10,6 +10,7 @@ import yuki.task.Task;
  * Represents a command to add a task to the task list.
  */
 public abstract class Command {
+    public static Command lastCommand = null;
     final String[] commands;
     private final String description;
 
@@ -36,4 +37,6 @@ public abstract class Command {
     public abstract boolean isExit();
 
     public abstract String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException;
+
+    public abstract String undo(TaskList<Task> tasks) throws YukiException;
 }

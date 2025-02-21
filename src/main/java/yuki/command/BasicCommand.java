@@ -26,73 +26,40 @@ public class BasicCommand extends Command{
      */
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
-        StringBuilder output = new StringBuilder();
-        switch (this.getCommand(0)) {
-            case "list" -> {
-                output.append("Here are the tasks in your list:\n");
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println((i + 1) + ". " + tasks.getDescription(i));
+        return switch (this.getCommand(0)) {
+            case "list" -> handleListCommand(tasks);
+            case "find" -> handleFindCommand(tasks);
+            default -> "Invalid command";
+        };
+    }
+
+    private String handleListCommand(TaskList<Task> tasks) {
+        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            output.append((i + 1)).append(". ").append(tasks.getDescription(i)).append("\n");
+        }
+        Command.lastCommand = this;
+        return output.toString();
+    }
+
+    private String handleFindCommand(TaskList<Task> tasks) {
+        try {
+            String keyword = getCommand(1);
+            StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
+            for (int i = 0; i < tasks.size(); i++) {
+                if (tasks.getDescription(i).contains(keyword)) {
                     output.append((i + 1)).append(". ").append(tasks.getDescription(i)).append("\n");
                 }
-                return output.toString();
             }
-            case "mark" -> {
-                try {
-                    int taskNumber = Integer.parseInt(getCommand(1));
-                    tasks.get(taskNumber - 1).markAsDone();
-                    output.append("Nice! I've marked this task as done:\n");
-                    output.append(tasks.getDescription(taskNumber - 1)).append("\n");
-                    return output.toString();
-                } catch (IndexOutOfBoundsException e) {
-                    return "Task number does not exist";
-                } catch (NumberFormatException e) {
-                    return "Please enter a valid task number";
-                }
-
-            }
-            case "unmark" -> {
-                try {
-                    int taskNumber = Integer.parseInt(getCommand(1));
-                    tasks.get(taskNumber - 1).markAsNotDone();
-                    output.append("Nice! I've marked this task as not done:\n");
-                    output.append(tasks.getDescription(taskNumber - 1)).append("\n");
-                    return output.toString();
-                } catch (IndexOutOfBoundsException e) {
-                    return "Task number does not exist";
-                } catch (NumberFormatException e) {
-                    return "Please enter a valid task number";
-                }
-            }
-            case "delete" -> {
-                try {
-                    int taskNumber = Integer.parseInt(getCommand(1));
-                    output.append(tasks.getDescription(taskNumber - 1)).append("\n");
-                    tasks.remove(taskNumber - 1);
-                    output.append("Noted. I've removed this task:\n");
-                    output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
-                    return output.toString();
-                } catch (IndexOutOfBoundsException e) {
-                    return "Task number does not exist";
-                } catch (NumberFormatException e) {
-                    return "Please enter a valid task number";
-                }
-            }
-            case "find" -> {
-                try {
-                    String keyword = getCommand(1);
-                    output.append("Here are the matching tasks in your list:\n");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        if (tasks.getDescription(i).contains(keyword)) {
-                            output.append((i + 1)).append(". ").append(tasks.getDescription(i)).append("\n");
-                            System.out.println((i + 1) + ". " + tasks.getDescription(i));
-                        }
-                    }
-                    return output.toString();
-                } catch (IndexOutOfBoundsException e) {
-                    return "Please enter a keyword to search for";
-                }
-            }
+            Command.lastCommand = this;
+            return output.toString();
+        } catch (IndexOutOfBoundsException e) {
+            return "Please enter a keyword to search for";
         }
-        return "Invalid command";
+    }
+
+    @Override
+    public String undo(TaskList<Task> tasks) throws YukiException {
+        return "This command cannot be undone";
     }
 }
