@@ -32,6 +32,7 @@ public class DeleteCommand extends Command {
         this.deletedTask = tasks.remove(taskNumber);
         output.append("Noted. I've removed this task:\n");
         output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+        Command.lastCommand = this;
         return output.toString();
     }
 

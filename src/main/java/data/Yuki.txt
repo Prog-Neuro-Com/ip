@@ -1,5 +1,5 @@
 D | 1 | return book | 2019-12-31
 E | 0 | project meeting | Mon 2pm | 4pm
+E | 0 | homework | tonight | tomorrow
 T | 0 | test
 T | 0 | read book
-E | 0 | homework | tonight | tomorrow
