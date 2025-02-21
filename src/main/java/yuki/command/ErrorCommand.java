@@ -16,11 +16,17 @@ public class ErrorCommand extends Command {
 
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+        Command.lastCommand = this;
         return this.getDescription();
     }
 
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public String undo(TaskList<Task> tasks) throws YukiException {
+        return "";
     }
 }

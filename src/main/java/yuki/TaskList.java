@@ -46,7 +46,7 @@ public class TaskList <T> {
      * Removes the task at the specified index.
      * @param taskNumber Index of the task
      */
-    public void remove(int taskNumber) {
-        taskList.remove(taskNumber);
+    public Task remove(int taskNumber) {
+        return (Task) taskList.remove(taskNumber);
     }
 }

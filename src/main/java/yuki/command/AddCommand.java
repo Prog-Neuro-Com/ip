@@ -28,6 +28,7 @@ public class AddCommand extends Command {
 
     @Override
     public String execute(TaskList<Task> tasks, Ui ui, Storage storage) throws YukiException {
+
         return switch (this.getCommand(0)) {
             case "todo" -> handleTodoCommand(tasks);
             case "deadline" -> handleDeadlineCommand(tasks);
@@ -81,7 +82,13 @@ public class AddCommand extends Command {
         output.append("Got it. I've added this task:\n");
         output.append(task).append("\n");
         output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
+        Command.lastCommand = this;
         return output.toString();
     }
 
+    @Override
+    public String undo(TaskList<Task> tasks) throws YukiException {
+        tasks.remove(tasks.size() - 1);
+        return "Last task removed.";
+    }
 }
