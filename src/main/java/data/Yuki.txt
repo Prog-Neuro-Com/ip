@@ -3,3 +3,4 @@ E | 0 | project meeting | Mon 2pm | 4pm
 E | 0 | homework | tonight | tomorrow
 T | 0 | test
 T | 1 | read book
+T | 0 | test test

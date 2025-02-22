@@ -32,7 +32,7 @@ public class Yuki {
 
 
     public static void main(String[] args) {
-        new Yuki("src/main/java/data/Yuki.txt");
+        new Yuki("Yuki.txt");
     }
 
     /**

@@ -33,7 +33,7 @@ public class UnmarkCommand extends Command {
     private String handleUnmarkCommand(TaskList<Task> tasks) {
         int taskNumber = getValidatedTaskNumber();
         if (taskNumber >= tasks.size()) return "Task number does not exist";
-
+        if (taskNumber == -1) return "Task number must be a positive number";
         tasks.get(taskNumber).markAsNotDone();
         StringBuilder output = new StringBuilder("Nice! I've unmarked this task:\n");
         output.append(tasks.getDescription(taskNumber)).append("\n");

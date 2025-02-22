@@ -33,7 +33,7 @@ public class MarkCommand extends Command {
     private String handleMarkCommand(TaskList<Task> tasks) {
         int taskNumber = getValidatedTaskNumber();
         if (taskNumber >= tasks.size()) return "Task number does not exist";
-
+        if (taskNumber == -1) return "Task number must be a positive number";
         tasks.get(taskNumber).markAsDone();
         StringBuilder output = new StringBuilder("Nice! I've marked this task as done:\n");
         output.append(tasks.getDescription(taskNumber)).append("\n");

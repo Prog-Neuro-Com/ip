@@ -18,7 +18,7 @@ import static java.lang.Thread.sleep;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-    private final Yuki yuki = new Yuki("src/main/java/data/Yuki.txt");
+    private final Yuki yuki = new Yuki("Yuki.txt");
 
     @Override
     public void start(Stage stage) {
@@ -28,7 +28,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setTitle("Yuki");
-            fxmlLoader.<MainWindow>getController().setDuke(yuki);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setDuke(yuki);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

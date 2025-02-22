@@ -6,6 +6,10 @@ import yuki.Ui;
 import yuki.YukiException;
 import yuki.task.Task;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * Represents a command to add a task to the task list.
  */
@@ -44,7 +48,8 @@ public class BasicCommand extends Command{
 
     private String handleFindCommand(TaskList<Task> tasks) {
         try {
-            String keyword = getCommand(1);
+            String keyword = Arrays.stream(commands, 1, commands.length)
+                    .collect(Collectors.joining(" "));
             StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
                 if (tasks.getDescription(i).contains(keyword)) {
