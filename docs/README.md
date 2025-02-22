@@ -7,6 +7,18 @@ tasks faster than traditional GUI apps.
 
 ![Ui.png](Ui.png)
 
+## How to start Yuki
+Download the latest version of JAR file.
+Put the JAR file in an empty folder.
+Open the terminal and navigate to the folder where the JAR file is located.
+Run the following command to start Yuki.
+```
+java -jar Yuki.jar
+```
+Yuki will start and display the welcome message.
+
+Notice that the data will be saved in the same folder where JAR file is in with name `Yuki.txt` .
+
 ## Listing tasks
 You can list all the tasks by using the following command.
 ```
