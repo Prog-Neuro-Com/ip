@@ -38,6 +38,7 @@ public class UnmarkCommand extends Command {
         StringBuilder output = new StringBuilder("Nice! I've unmarked this task:\n");
         output.append(tasks.getDescription(taskNumber)).append("\n");
         Command.lastCommand = this;
+        Storage.save(tasks);
         return output.toString();
     }
 
@@ -62,6 +63,7 @@ public class UnmarkCommand extends Command {
         StringBuilder output = new StringBuilder("Nice! I've marked this task as done:\n");
         output.append(tasks.getDescription(taskNumber)).append("\n");
         Command.lastCommand = this;
+        Storage.save(tasks);
         return output.toString();
     }
 }

@@ -15,10 +15,10 @@ import yuki.task.Todo;
  * Represents a storage object that handles saving and loading tasks to and from a file.
  */
 public class Storage {
-    private final String filePath;
-    private final TaskList<Task> storageTasks = new TaskList<>();
+    private static String filePath = "yuki.txt";
+    private static final TaskList<Task> storageTasks = new TaskList<>();
     public Storage(String filePath) {
-        this.filePath = filePath;
+        Storage.filePath = filePath;
     }
 
     /**
@@ -26,7 +26,7 @@ public class Storage {
      *
      * @param tasks The list of tasks to be saved.
      */
-    public void save(TaskList<Task> tasks) {
+    public static void save(TaskList<Task> tasks) {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (int i = 0; i < tasks.size(); i++) {
@@ -44,7 +44,7 @@ public class Storage {
      * @return The list of tasks loaded from the file.
      * @throws YukiException If the file is not found or if the task type is invalid.
      */
-    public TaskList<Task> load() throws YukiException {
+    public static TaskList<Task> load() throws YukiException {
         File file = new File(filePath);
         try {
             Scanner scanner = new Scanner(file);

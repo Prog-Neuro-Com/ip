@@ -67,6 +67,7 @@ public class AddCommand extends Command {
         }
         Task newDeadline = new Deadline("0", c[0], c[1]);
         tasks.add(newDeadline);
+        Storage.save(tasks);
         return constructOutput(newDeadline, tasks);
     }
 
@@ -82,6 +83,7 @@ public class AddCommand extends Command {
         }
         Task newEvent = new Event("0", c[0], c[1], c[2]);
         tasks.add(newEvent);
+        Storage.save(tasks);
         return constructOutput(newEvent, tasks);
     }
 
@@ -91,6 +93,7 @@ public class AddCommand extends Command {
         output.append(task).append("\n");
         output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
         Command.lastCommand = this;
+        Storage.save(tasks);
         return output.toString();
     }
 
@@ -103,6 +106,7 @@ public class AddCommand extends Command {
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
         tasks.remove(tasks.size() - 1);
+        Storage.save(tasks);
         return "Last task removed.";
     }
 }

@@ -44,6 +44,7 @@ public class DeleteCommand extends Command {
         output.append("Noted. I've removed this task:\n");
         output.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n");
         Command.lastCommand = this;
+        Storage.save(tasks);
         return output.toString();
     }
 
@@ -69,6 +70,7 @@ public class DeleteCommand extends Command {
             throw new YukiException("No task has been deleted yet.");
         }
         tasks.add(deletedTask);
+        Storage.save(tasks);
         return "Task has been added back to the list.";
     }
 }

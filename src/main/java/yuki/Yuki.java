@@ -22,7 +22,7 @@ public class Yuki {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList<>(storage.load());
+            tasks = new TaskList<>(Storage.load());
         } catch (YukiException e) {
             ui.showLoadingError();
             tasks = new TaskList<>();
@@ -32,7 +32,7 @@ public class Yuki {
 
 
     public static void main(String[] args) {
-        new Yuki("Yuki.txt");
+        new Yuki("./data/yuki.txt");
     }
 
     /**
