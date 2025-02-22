@@ -42,6 +42,6 @@ public class ExitCommand extends Command {
      */
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
-        return "";
+        return "Yuki is exiting...";
     }
 }

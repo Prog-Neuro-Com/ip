@@ -53,4 +53,8 @@ public class TaskList <T> {
     public Task remove(int taskNumber) {
         return (Task) taskList.remove(taskNumber);
     }
+
+    public String getTaskName(int i) {
+        return ((Task) taskList.get(i)).getTaskName();
+    }
 }

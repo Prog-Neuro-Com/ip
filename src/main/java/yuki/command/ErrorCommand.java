@@ -41,6 +41,6 @@ public class ErrorCommand extends Command {
      */
     @Override
     public String undo(TaskList<Task> tasks) throws YukiException {
-        return "";
+        return "Cannot undo an error command";
     }
 }

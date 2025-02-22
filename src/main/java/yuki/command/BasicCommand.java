@@ -52,7 +52,7 @@ public class BasicCommand extends Command{
                     .collect(Collectors.joining(" "));
             StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
-                if (tasks.getDescription(i).contains(keyword)) {
+                if (tasks.getTaskName(i).contains(keyword)) {
                     output.append((i + 1)).append(". ").append(tasks.getDescription(i)).append("\n");
                 }
             }
