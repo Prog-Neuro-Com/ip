@@ -15,7 +15,7 @@ import yuki.task.Todo;
  * Represents a storage object that handles saving and loading tasks to and from a file.
  */
 public class Storage {
-    private static String filePath = "yuki.txt";
+    private static String filePath = "./data/yuki.txt";
     private static final TaskList<Task> storageTasks = new TaskList<>();
     public Storage(String filePath) {
         Storage.filePath = filePath;
@@ -28,6 +28,10 @@ public class Storage {
      */
     public static void save(TaskList<Task> tasks) {
         try {
+            File directory = new File("./data");
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
             FileWriter writer = new FileWriter(filePath);
             for (int i = 0; i < tasks.size(); i++) {
                 writer.write(tasks.get(i).toFileString() + "\n");

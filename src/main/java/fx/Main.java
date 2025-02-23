@@ -18,7 +18,7 @@ import static java.lang.Thread.sleep;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-    private final Yuki yuki = new Yuki("yuki.txt");
+    private final Yuki yuki = new Yuki("./data/yuki.txt");
 
     @Override
     public void start(Stage stage) {
