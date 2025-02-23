@@ -17,7 +17,7 @@ java -jar Yuki.jar
 ```
 Yuki will start and display the welcome message.
 
-Notice that the data will be saved in the same folder where JAR file is in with name `Yuki.txt` .
+Notice that the data will be saved at `./data/yuki.txt` automatically after any command that changes the data.
 
 ## Listing tasks
 You can list all the tasks by using the following command.
@@ -133,7 +133,7 @@ Yuki will exit the application and save the tasks to the hard disk.
 
 ## Saving the data
 Yuki saves the data automatically after any command that changes the data.
-There is no need to save manually. But if you want to save manually, you can go to the `data` folder and replace the `Yuki.txt` file with the new one.
+There is no need to save manually. But if you want to save manually, you can go to the `data` folder and replace the `yuki.txt` file with the new one.
 The format of the data is as follows:
 ```
 T/D/E | X | TASK_DESCRIPTION | DATE
